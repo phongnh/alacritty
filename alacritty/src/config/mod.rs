@@ -370,7 +370,7 @@ fn prune_yaml_nulls(value: &mut serde_yaml::Value, warn_pruned: bool) {
 /// 4. $HOME/.alacritty.toml
 #[cfg(not(windows))]
 pub fn installed_config(suffix: &str) -> Option<PathBuf> {
-    let file_name = format!("alacritty.{suffix}");
+    let file_name = format!("alacritty-light.{suffix}");
 
     // Try using XDG location by default.
     xdg::BaseDirectories::with_prefix("alacritty")
@@ -396,7 +396,7 @@ pub fn installed_config(suffix: &str) -> Option<PathBuf> {
 
 #[cfg(windows)]
 pub fn installed_config(suffix: &str) -> Option<PathBuf> {
-    let file_name = format!("alacritty.{suffix}");
+    let file_name = format!("alacritty-light.{suffix}");
     dirs::config_dir().map(|path| path.join("alacritty").join(file_name)).filter(|new| new.exists())
 }
 
