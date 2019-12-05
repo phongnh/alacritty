@@ -45,6 +45,9 @@ $(APP_NAME): $(TARGET)
 	@cp -fp $(COMPLETIONS) $(APP_COMPLETIONS_DIR)
 	@touch -r "$(APP_BINARY)" "$(APP_DIR)/$(APP_NAME)"
 	@echo "Created '$@' in '$(APP_DIR)'"
+	@rm -rf "/Applications/$(APP_NAME)"
+	@cp -fRp "$(APP_DIR)/$(APP_NAME)" /Applications
+	@echo "Copied '$(APP_NAME)' to '/Applications'"
 
 dmg: | $(DMG_NAME) ## Pack Alacritty.app into .dmg
 $(DMG_NAME): $(APP_NAME)
