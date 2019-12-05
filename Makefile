@@ -59,6 +59,9 @@ $(APP_NAME)-%: $(TARGET)-%
 	@codesign --remove-signature "$(APP_DIR)/$(APP_NAME)"
 	@codesign --force --deep --sign - "$(APP_DIR)/$(APP_NAME)"
 	@echo "Created '$(APP_NAME)' in '$(APP_DIR)'"
+	@rm -rf '/Applications/Alacritty Light.app'
+	@cp -fR "$(APP_DIR)/$(APP_NAME)" "/Applications/Alacritty Light.app"
+	@echo "Copied 'Alacritty Light.app' to '/Applications'"
 
 dmg: $(DMG_NAME)-native ## Create an Alacritty.dmg
 dmg-universal: $(DMG_NAME)-universal ## Create a universal Alacritty.dmg
