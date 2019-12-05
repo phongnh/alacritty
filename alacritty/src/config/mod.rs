@@ -266,21 +266,21 @@ fn installed_config() -> Option<PathBuf> {
     // Try using XDG location by default.
     xdg::BaseDirectories::with_prefix("alacritty")
         .ok()
-        .and_then(|xdg| xdg.find_config_file("alacritty.yml"))
+        .and_then(|xdg| xdg.find_config_file("alacritty-zen.yml"))
         .or_else(|| {
             xdg::BaseDirectories::new()
                 .ok()
-                .and_then(|fallback| fallback.find_config_file("alacritty.yml"))
+                .and_then(|fallback| fallback.find_config_file("alacritty-zen.yml"))
         })
         .or_else(|| {
             if let Ok(home) = env::var("HOME") {
                 // Fallback path: $HOME/.config/alacritty/alacritty.yml.
-                let fallback = PathBuf::from(&home).join(".config/alacritty/alacritty.yml");
+                let fallback = PathBuf::from(&home).join(".config/alacritty/alacritty-zen.yml");
                 if fallback.exists() {
                     return Some(fallback);
                 }
                 // Fallback path: $HOME/.alacritty.yml.
-                let fallback = PathBuf::from(&home).join(".alacritty.yml");
+                let fallback = PathBuf::from(&home).join(".alacritty-zen.yml");
                 if fallback.exists() {
                     return Some(fallback);
                 }
@@ -291,7 +291,7 @@ fn installed_config() -> Option<PathBuf> {
 
 #[cfg(windows)]
 fn installed_config() -> Option<PathBuf> {
-    dirs::config_dir().map(|path| path.join("alacritty\\alacritty.yml")).filter(|new| new.exists())
+    dirs::config_dir().map(|path| path.join("alacritty\\alacritty-zen.yml")).filter(|new| new.exists())
 }
 
 #[cfg(test)]
